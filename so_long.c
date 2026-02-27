@@ -1,81 +1,84 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: leondubau <leondubau@student.42.fr>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 08:54:03 by leondubau         #+#    #+#             */
-/*   Updated: 2026/02/17 20:40:09 by leondubau        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+//header
 
 #include "so_long.h"
 
-#include <stdio.h>
+#include <stdio.h> //no
 
-int	count_nextline(char *map)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 1;
-	while (map[i])
-		if (map[i++] == '\n' && map[i])
-			count++;
-	return (count);
-}
-
-int	len_line(char *map)
+void	free_all(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (map[i] != '\n' && map[i])
-		i ++;
-	return (i);
-}
-
-char	**map_buid(char *map)
-{
-	char	**map_tbl;
-	int		fd;
-	int		i;
-	int		length;
-	int		width;
-
-	length = count_nextline(map);
-	width = len_line(map);
-	map_tbl = malloc(length * sizeof(char *) + 1); // peut etre erreur
-	fd = open(map, O_RDONLY); // securiser
-	i = 0;
-	while(i < length)
+	if (game->map.array)
 	{
-		map_tbl[i] = ft_calloc(width, sizeof(char) + 1);
-		map_tbl[i] = get_next_line(fd);
-		map_tbl[i++][length] = '\0';
+		while (game->map.array[i])
+			free(game->map.array[i++]);
+		free(game->map.array);
 	}
-	map_tbl[i] = NULL;
-	close(fd);
-	return (map_tbl);
+	if (game->map.line)
+		free(game->map.line);
+}
+
+void	count_collectible(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->line[i])
+	{
+		if (map->line[i] == 'C')
+			map->total_collectibles++;
+		i++;
+	}
+}
+
+void	map_buid(int fd, t_map *map)
+{
+	char	*tmp;
+	char	*readed_line;
+
+	tmp = NULL;
+	readed_line = get_next_line(fd);
+	if (!readed_line) //ne stop pas le reste du programme -> valeurs non initialise
+		return;
+	map->width = ft_strlen(readed_line) - 1;
+	map->height = 0;
+	map->line = ft_strdup("");
+	while (readed_line)
+	{
+		tmp = ft_strjoin(map->line, readed_line);
+		if (!tmp)
+			return;
+		free(map->line);
+		free(readed_line);
+		map->line = tmp;
+		readed_line = get_next_line(fd);
+		map->height++;
+	}
+	count_collectible(map);
+	map->array = ft_split(map->line, '\n');
 }
 
 int main(int ac, char **av)
 {
-	char	**map_tbl;
+	t_game	game;
+	int		fd;
 
 	if (ac != 2)
 		return (0); // message d'erreur
 	if (ft_strnstr(av[1], ".ber", ft_strlen(av[1])) == 0)
 		return (0); // message d'erreur
-	map_tbl = map_buid(av[1]);
-
-	while (*map_tbl)
-	{
-		printf("%s\n", *map_tbl);
-		map_tbl++;
-	}
-
-	return 0;
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+		return (0);
+	ft_bzero(&game, sizeof(t_game));
+	map_buid(fd, &game.map);
+	close(fd);
+	init_mlx(&game);
+	load_textures(&game);
+	draw_all(&game);
+	mlx_key_hook(game.win, key_hook, &game);
+	mlx_hook(game.win, 17, 0, close_game, &game);
+	mlx_loop(game.mlx);
+	return (0);
 }
