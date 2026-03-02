@@ -1,4 +1,16 @@
-//header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
+/*   Updated: 2026/03/02 11:09:12 by leonpouet        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -54,6 +66,7 @@ int		key_hook(int keycode, t_game *game);
 void	draw_all(t_game *game);
 void	load_textures(t_game *game);
 void	free_all(t_game *game);
+int		error_check(t_game *game);
 
 
 #endif

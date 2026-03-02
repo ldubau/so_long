@@ -1,4 +1,14 @@
-//header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
+/*   Updated: 2026/03/02 11:10:15 by leonpouet        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -73,6 +83,7 @@ int main(int ac, char **av)
 		return (0);
 	ft_bzero(&game, sizeof(t_game));
 	map_buid(fd, &game.map);
+	error_check(&game);
 	close(fd);
 	init_mlx(&game);
 	load_textures(&game);
