@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/03 15:55:20 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/03 19:45:34 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,43 +62,44 @@ int	check_wall(t_map *map)
 	}
 	return (1);
 }
-
-void	fill(char **cpy_array, int collected, int exit, int x, int y)
+#include <stdio.h>
+void	fill(t_map *map, char **cpy_array, int *collec, int *exit, int x, int y)
 {
-	if (cpy_array[y][x] == '1' || cpy_array[y][x] == 'E')
+	if (x < 0 || y < 0 || y >= map->height || x >= map->width)
+		return;
+	if (cpy_array[y][x] == '1')
+		return;
+	if (cpy_array[y][x] == 'C')
+		(*collec)++;
+	if (cpy_array[y][x] == 'E')
 	{
-		if (cpy_array[y][x] == 'E')
-			exit++;
+		(*exit)++;
+		cpy_array[y][x] = '1';
 		return;
 	}
-	if (cpy_array[y][x] == '0' || cpy_array[y][x] == 'C' || cpy_array[y][x] == 'P')
-	{
-		cpy_array[y][x] = '1';
-		if (cpy_array[y][x] == 'C')
-			collected++;
-	}
-	fill(cpy_array, collected, exit, x + 1, y);
-	fill(cpy_array, collected, exit, x, y + 1);
-	fill(cpy_array, collected, exit, x - 1, y);
-
-	fill(cpy_array, collected, exit, x, y - 1);
+	cpy_array[y][x] = '1';
+	fill(map, cpy_array, collec, exit, x + 1, y);
+	fill(map, cpy_array, collec, exit, x, y + 1);
+	fill(map, cpy_array, collec, exit, x - 1, y);
+	fill(map, cpy_array, collec, exit, x, y - 1);
+	return;
 }
 
 int	flood_fill(t_map *map)
 {
 	int			i;
-	static int	collected;
-	static int	exit;
+	int			collec;
+	int			exit;
 	char		**cpy_array;
 
 	i = 0;
-	collected = 0;
+	collec = 0;
 	exit = 0;
 	cpy_array = ft_split(map->line, '\n');
 	if (!cpy_array)
 		return (0);
-	fill(cpy_array, collected, exit, map->player.x, map->player.y);
-	if (exit != 1 || collected != map->total_collectibles)
+	fill(map, cpy_array, &collec, &exit, map->player.x, map->player.y);
+	if (exit < 1 || collec != map->total_collectibles)
 		return (0);
 	while (cpy_array[i])
 			free(cpy_array[i++]);

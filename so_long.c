@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/03 15:27:57 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/03 18:39:18 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	parse_object(t_map *map)
 		j = 0;
 		while (map->array[i][j])
 		{
-			if (map->array[i][j] == 'E')
+			if (map->array[i][j] == 'P')
 			{
-				map->exit.x = j;
-				map->exit.y = i;
+				map->player.x = j;
+				map->player.y = i;
 			}
 			j++;
 		}
