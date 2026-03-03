@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/02 11:10:15 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/03 11:11:31 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,31 @@ void	free_all(t_game *game)
 		free(game->map.line);
 }
 
-void	count_collectible(t_map *map)
+void	parse_object(t_map *map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (map->line[i])
 	{
 		if (map->line[i] == 'C')
 			map->total_collectibles++;
+		i++;
+	}
+	i = 0;
+	while (map->array[i])
+	{
+		j = 0;
+		while (map->array[i][j])
+		{
+			if (map->array[i][j] == 'E')
+			{
+				map->exit.x = j;
+				map->exit.y = i;
+			}
+			j++;
+		}
 		i++;
 	}
 }
@@ -65,7 +81,7 @@ void	map_buid(int fd, t_map *map)
 		readed_line = get_next_line(fd);
 		map->height++;
 	}
-	count_collectible(map);
+	parse_object(map);
 	map->array = ft_split(map->line, '\n');
 }
 
