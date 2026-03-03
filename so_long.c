@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/03 11:11:31 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:27:57 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	map_buid(int fd, t_map *map)
 		readed_line = get_next_line(fd);
 		map->height++;
 	}
-	parse_object(map);
 	map->array = ft_split(map->line, '\n');
+		parse_object(map);
 }
 
 int main(int ac, char **av)
@@ -99,7 +99,8 @@ int main(int ac, char **av)
 		return (0);
 	ft_bzero(&game, sizeof(t_game));
 	map_buid(fd, &game.map);
-	error_check(&game);
+	if (!error_check(&game))
+		return (0);
 	close(fd);
 	init_mlx(&game);
 	load_textures(&game);

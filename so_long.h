@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/02 18:59:50 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/03 12:35:27 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ typedef struct s_game
 } t_game;
 
 
-# include "./42-Libft/get_next_line.h" // put my libft
-# include "./42-Libft/libft.h"
+# include "./Libft/get_next_line.h" // put my libft
+# include "./Libft/libft.h"
 # include "./minilibx-linux/mlx.h"
 # include <stdbool.h>
+# include <fcntl.h>
+
 
 void	init_mlx(t_game *game);
 int		close_game(t_game *game);
