@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/03 12:35:27 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/04 09:52:34 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_map
 	int		total_collectibles;
 	int		collected;
 	t_pos	player;
-	t_pos	exit;
 }t_map;
 
 typedef struct s_img
