@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/03 19:45:34 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/05 10:54:11 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ int	flood_fill(t_map *map)
 	if (!cpy_array)
 		return (0);
 	fill(map, cpy_array, &collec, &exit, map->player.x, map->player.y);
-	if (exit < 1 || collec != map->total_collectibles)
-		return (0);
 	while (cpy_array[i])
 			free(cpy_array[i++]);
 		free(cpy_array);
+	if (exit < 1 || collec != map->total_collectibles)
+		return (0);
 	return (1);
 }
 
@@ -124,11 +124,11 @@ int	error_check(t_game *game)
 	}
 	if (i != game->map.height)
 		return (0);
-	if (!check_wall(&game->map))
+	if (!check_wall(&game->map)) // errormsg
 		return (0);
-	if (!check_object(&game->map))
+	if (!check_object(&game->map)) // errormsg
 		return (0);
-	if (!flood_fill(&game->map))
+	if (!flood_fill(&game->map)) // errormsg
 		return (0);
 	return (1);
 }

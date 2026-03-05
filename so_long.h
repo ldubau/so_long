@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/04 09:52:34 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/05 11:11:25 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	void	*textures;
+	int		count;
 	t_map	map;
 	t_img	wall;
 	t_img	floor;
@@ -69,6 +70,7 @@ void	draw_all(t_game *game);
 void	load_textures(t_game *game);
 void	free_all(t_game *game);
 int		error_check(t_game *game);
+void	map_buid(int fd, t_map *map);
 
 
 #endif
