@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:37:00 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/05 13:37:09 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/05 12:13:39 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ void	load_textures(t_game *game)
 {
 	load_map(game);
 	if (!game->wall.img)
-			printf("Failed to load wall texture");
+		ft_printf("Failed to load wall texture");
 	if (!game->floor.img)
-		printf("Failed to load floor texture");
+		ft_printf("Failed to load floor texture");
 	if (!game->collect.img)
-		printf("Failed to load collect texture");
+		ft_printf("Failed to load collect texture");
 	if (!game->exit.img)
-		printf("Failed to load exit texture");
+		ft_printf("Failed to load exit texture");
 	if (!game->player.img)
-		printf("Failed to load player texture");
+		ft_printf("Failed to load player texture");
 	if (game->wall.width != TILE_SIZE || game->wall.height != TILE_SIZE ||
 	game->floor.width != TILE_SIZE || game->floor.height != TILE_SIZE ||
 	game->collect.width != TILE_SIZE || game->collect.height != TILE_SIZE ||
 	game->exit.width != TILE_SIZE || game->exit.height != TILE_SIZE ||
 	game->player.width != TILE_SIZE || game->player.height != TILE_SIZE)
-		printf("Wrong texture size");
+		ft_printf("Wrong texture size");
 }

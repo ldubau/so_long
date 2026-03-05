@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 13:37:19 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/05 12:09:43 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ typedef struct s_game
 } t_game;
 
 
-# include "./Libft/get_next_line.h"
-# include "./Libft/libft.h"
-# include "./ft_printf/ft_printf.h"
-# include "./minilibx-linux/mlx.h"
+# include "get_next_line.h"
+# include "libft.h"
+# include "ft_printf.h"
+# include "mlx.h"
 # include <stdbool.h>
 # include <fcntl.h>
 

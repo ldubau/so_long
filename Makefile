@@ -5,12 +5,10 @@ SRCS = so_long.c init_mlx.c hooks.c draw_map.c textures.c error.c\
 
 SRCS_DIR = sources/
 OBJS_DIR = objects/
+INCLUDE_DIR = ./includes
 
 SRCS := $(addprefix $(SRCS_DIR), $(SRCS))
 OBJS := $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -20,6 +18,9 @@ FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
 
 LIBMLX_DIR = ./minilibx-linux
 LIBMLX = $(LIBMLX_DIR)/libmlx.a
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I$(LIBMLX_DIR) -I$(INCLUDE_DIR)
 
 all: $(NAME)
 
@@ -35,7 +36,7 @@ $(FT_PRINTF):
 $(LIBMLX):
 	make -C $(LIBMLX_DIR)
 
-%.o: %.c
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

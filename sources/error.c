@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 13:16:56 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/05 12:11:40 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_wall(t_map *map)
 	}
 	return (1);
 }
-#include <stdio.h>
+
 void	fill(t_map *map, char **cpy_array, int *collec, int *exit, int x, int y)
 {
 	if (x < 0 || y < 0 || y >= map->height || x >= map->width)
