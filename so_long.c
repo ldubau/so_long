@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 10:32:07 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/05 12:56:39 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int main(int ac, char **av)
 	int		fd;
 
 	if (ac != 2)
-		return (0); // message d'erreur
+		return (error_message(1));
 	if (ft_strnstr(av[1], ".ber", ft_strlen(av[1])) == 0)
-		return (0); // message d'erreur
+		return (error_message(2));
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (error_message(3));
 	ft_bzero(&game, sizeof(t_game));
 	map_buid(fd, &game.map);
 	if (!error_check(&game))

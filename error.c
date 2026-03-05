@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 10:54:11 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/05 13:16:56 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,16 +119,16 @@ int	error_check(t_game *game)
 		while (game->map.array[i][j])
 			j++;
 		if (j != game->map.width)
-			return (0);
+			return (error_message(4));
 		i++;
 	}
 	if (i != game->map.height)
-		return (0);
-	if (!check_wall(&game->map)) // errormsg
-		return (0);
-	if (!check_object(&game->map)) // errormsg
-		return (0);
-	if (!flood_fill(&game->map)) // errormsg
-		return (0);
+		return (error_message(4));
+	if (!check_wall(&game->map))
+		return (error_message(5));
+	if (!check_object(&game->map))
+		return (error_message(6));
+	if (!flood_fill(&game->map))
+		return (error_message(7));
 	return (1);
 }

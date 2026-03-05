@@ -1,6 +1,7 @@
 NAME = so_long
 
-SRCS = so_long.c init_mlx.c hooks.c draw_map.c textures.c error.c parse.c
+SRCS = so_long.c init_mlx.c hooks.c draw_map.c textures.c error.c\
+	parse.c error_message.c
 
 OBJS = $(SRCS:.c=.o)
 

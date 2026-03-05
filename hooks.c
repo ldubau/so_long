@@ -1,4 +1,14 @@
-// header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/05 12:36:32 by ldubau            #+#    #+#             */
+/*   Updated: 2026/03/05 12:39:04 by ldubau           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -28,7 +38,6 @@ int	close_game(t_game *game)
 	return (0);
 }
 
-#include <stdio.h>
 int	moov_player(t_game *game, int x, int y)
 {
 	if (game->map.array[y][x] == '1')
@@ -46,7 +55,7 @@ int	moov_player(t_game *game, int x, int y)
 			return (0);
 	}
 	game->count++;
-
+	ft_printf("%d\n", game->count);
 	return (1);
 }
 

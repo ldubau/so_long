@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 11:11:25 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/05 12:59:20 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ typedef struct s_game
 } t_game;
 
 
-# include "./Libft/get_next_line.h" // put my libft
+# include "./Libft/get_next_line.h"
 # include "./Libft/libft.h"
+# include "./ft_printf/ft_printf.h"
 # include "./minilibx-linux/mlx.h"
 # include <stdbool.h>
 # include <fcntl.h>
@@ -71,6 +72,7 @@ void	load_textures(t_game *game);
 void	free_all(t_game *game);
 int		error_check(t_game *game);
 void	map_buid(int fd, t_map *map);
+int		error_message(int nbr);
 
 
 #endif
