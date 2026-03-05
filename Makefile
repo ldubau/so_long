@@ -3,7 +3,11 @@ NAME = so_long
 SRCS = so_long.c init_mlx.c hooks.c draw_map.c textures.c error.c\
 	parse.c error_message.c
 
-OBJS = $(SRCS:.c=.o)
+SRCS_DIR = sources/
+OBJS_DIR = objects/
+
+SRCS := $(addprefix $(SRCS_DIR), $(SRCS))
+OBJS := $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
