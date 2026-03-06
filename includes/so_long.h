@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 12:09:43 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 08:08:04 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_map
 	int		height;
 	int		total_collectibles;
 	int		collected;
+	int		filled_collect;
+	int		filled_exit;
 	t_pos	player;
 }t_map;
 
@@ -74,6 +76,3 @@ int		error_message(int nbr);
 
 
 #endif
-
-
-// ccw so_long.c libft.a /home/leonpouet/Documents/so_long/get_next_line/get_next_line.c /home/leonpouet/Documents/so_long/get_next_line/get_next_line_utils.c -I/home/leonpouet/Documents/so_long/get_next_line

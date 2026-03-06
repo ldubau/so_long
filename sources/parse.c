@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 09:59:03 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/04 09:59:45 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 08:22:04 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	map_buid(int fd, t_map *map)
 
 	tmp = NULL;
 	readed_line = get_next_line(fd);
-	if (!readed_line) //ne stop pas le reste du programme -> valeurs non initialise
-		return;
+	if (!readed_line)
+		return ;
 	map->width = ft_strlen(readed_line) - 1;
 	map->height = 0;
 	map->line = ft_strdup("");
@@ -57,7 +57,7 @@ void	map_buid(int fd, t_map *map)
 	{
 		tmp = ft_strjoin(map->line, readed_line);
 		if (!tmp)
-			return;
+			return ;
 		free(map->line);
 		free(readed_line);
 		map->line = tmp;
@@ -65,5 +65,5 @@ void	map_buid(int fd, t_map *map)
 		map->height++;
 	}
 	map->array = ft_split(map->line, '\n');
-		parse_object(map);
+	parse_object(map);
 }

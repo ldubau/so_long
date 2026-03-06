@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 12:36:32 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/05 12:39:04 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/06 08:21:06 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,17 @@ int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 		close_game(game);
-	else if (keycode == 65363 && moov_player(game, game->map.player.x + 1, game->map.player.y))
+	else if (keycode == 65363
+		&& moov_player(game, game->map.player.x + 1, game->map.player.y))
 		game->map.player.x++;
-	else if (keycode == 65361 && moov_player(game, game->map.player.x - 1, game->map.player.y))
+	else if (keycode == 65361
+		&& moov_player(game, game->map.player.x - 1, game->map.player.y))
 		game->map.player.x--;
-	else if (keycode == 65364 && moov_player(game, game->map.player.x, game->map.player.y + 1))
+	else if (keycode == 65364
+		&& moov_player(game, game->map.player.x, game->map.player.y + 1))
 		game->map.player.y++;
-	else if (keycode == 65362 && moov_player(game, game->map.player.x, game->map.player.y - 1))
+	else if (keycode == 65362
+		&& moov_player(game, game->map.player.x, game->map.player.y - 1))
 		game->map.player.y--;
 	draw_all(game);
 	return (0);

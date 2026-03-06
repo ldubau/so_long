@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
+/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:36:26 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/05 13:36:31 by ldubau           ###   ########.fr       */
+/*   Updated: 2026/03/06 08:31:29 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	draw_map(t_game *game, char data, int i, int j)
 {
 	if (data == '1')
 		mlx_put_image_to_window(game->mlx, game->win,
-		game->wall.img, j * TILE_SIZE, i * TILE_SIZE);
+			game->wall.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == '0')
 		mlx_put_image_to_window(game->mlx, game->win,
-		game->floor.img, j * TILE_SIZE, i * TILE_SIZE);
+			game->floor.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == 'C')
 		mlx_put_image_to_window(game->mlx, game->win,
-		game->collect.img, j * TILE_SIZE, i * TILE_SIZE);
+			game->collect.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == 'E' && game->map.collected != game->map.total_collectibles)
-		mlx_put_image_to_window(game->mlx,game->win,
-		game->exit.img, j * TILE_SIZE, i * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->exit.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == 'E' && game->map.collected == game->map.total_collectibles)
-		mlx_put_image_to_window(game->mlx,game->win,
-		game->exit.img, j * TILE_SIZE, i * TILE_SIZE); // exit free img
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->exit.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == 'P')
 	{
 		game->map.array[i][j] = '0';
@@ -36,11 +36,11 @@ void	draw_map(t_game *game, char data, int i, int j)
 		game->map.player.y = i;
 	}
 }
-#include <stdio.h>
+
 void	draw_all(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	data;
 
 	i = 0;
@@ -51,7 +51,7 @@ void	draw_all(t_game *game)
 		{
 			data = game->map.array[i][j];
 			if (data == '1' || data == '0' || data == 'C'
-			|| data == 'E' || data == 'P')
+				|| data == 'E' || data == 'P')
 				draw_map(game, data, i, j);
 			j++;
 		}

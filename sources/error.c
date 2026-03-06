@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/05 12:11:40 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 08:18:51 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,59 +50,58 @@ int	check_wall(t_map *map)
 	{
 		j = 0;
 		if (i == 0 || i == map->height - 1)
+		{
 			while (map->array[i][j])
 			{
 				if (map->array[i][j] != '1')
 					return (0);
 				j++;
 			}
-		else if (map->array[i][0] != '1' || map->array[i][map->width - 1] != '1')
+		}
+		else if (map->array[i][0] != '1' ||
+		map->array[i][map->width - 1] != '1')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	fill(t_map *map, char **cpy_array, int *collec, int *exit, int x, int y)
+void	fill(t_map *map, char **cpy_array, int x, int y)
 {
 	if (x < 0 || y < 0 || y >= map->height || x >= map->width)
-		return;
+		return ;
 	if (cpy_array[y][x] == '1')
-		return;
+		return ;
 	if (cpy_array[y][x] == 'C')
-		(*collec)++;
+		map->filled_collect++;
 	if (cpy_array[y][x] == 'E')
 	{
-		(*exit)++;
+		map->filled_exit++;
 		cpy_array[y][x] = '1';
-		return;
+		return ;
 	}
 	cpy_array[y][x] = '1';
-	fill(map, cpy_array, collec, exit, x + 1, y);
-	fill(map, cpy_array, collec, exit, x, y + 1);
-	fill(map, cpy_array, collec, exit, x - 1, y);
-	fill(map, cpy_array, collec, exit, x, y - 1);
-	return;
+	fill(map, cpy_array, x + 1, y);
+	fill(map, cpy_array, x, y + 1);
+	fill(map, cpy_array, x - 1, y);
+	fill(map, cpy_array, x, y - 1);
+	return ;
 }
 
 int	flood_fill(t_map *map)
 {
 	int			i;
-	int			collec;
-	int			exit;
 	char		**cpy_array;
 
 	i = 0;
-	collec = 0;
-	exit = 0;
 	cpy_array = ft_split(map->line, '\n');
 	if (!cpy_array)
 		return (0);
-	fill(map, cpy_array, &collec, &exit, map->player.x, map->player.y);
+	fill(map, cpy_array, map->player.x, map->player.y);
 	while (cpy_array[i])
-			free(cpy_array[i++]);
-		free(cpy_array);
-	if (exit < 1 || collec != map->total_collectibles)
+		free(cpy_array[i++]);
+	free(cpy_array);
+	if (map->filled_exit < 1 || map->filled_collect != map->total_collectibles)
 		return (0);
 	return (1);
 }

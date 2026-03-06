@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:37:57 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/05 12:16:54 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 08:32:10 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	print_unsigned(unsigned int n)
 	int	count;
 
 	count = 0;
-	// if (n < 0)
+	if (n < 0)
 		n = 4294967295 + n;
 	count += ft_putnbr(n);
 	return (count);
