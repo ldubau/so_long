@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:37:00 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/06 08:25:18 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 12:45:03 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,35 @@ void	load_map(t_game *game)
 	game->exit.img = mlx_xpm_file_to_image(game->mlx,
 			"./ressources/exit.xpm",
 			&game->exit.width, &game->exit.height);
+	game->c_exit.img = mlx_xpm_file_to_image(game->mlx,
+			"./ressources/closed_exit.xpm",
+			&game->c_exit.width, &game->c_exit.height);
 	game->player.img = mlx_xpm_file_to_image(game->mlx,
 			"./ressources/player.xpm",
 			&game->player.width, &game->player.height);
 }
 
-void	load_textures(t_game *game)
+int	load_textures(t_game *game)
 {
 	load_map(game);
 	if (!game->wall.img)
-		ft_printf("Failed to load wall texture");
+		return (error_message(10));
 	if (!game->floor.img)
-		ft_printf("Failed to load floor texture");
+		return (error_message(11));
 	if (!game->collect.img)
-		ft_printf("Failed to load collect texture");
+		return (error_message(12));
 	if (!game->exit.img)
-		ft_printf("Failed to load exit texture");
+		return (error_message(13));
+	if (!game->c_exit.img)
+		return (error_message(14));
 	if (!game->player.img)
-		ft_printf("Failed to load player texture");
+		return (error_message(15));
 	if (game->wall.width != TILE_SIZE || game->wall.height != TILE_SIZE
 		|| game->floor.width != TILE_SIZE || game->floor.height != TILE_SIZE
 		|| game->collect.width != TILE_SIZE || game->collect.height != TILE_SIZE
 		|| game->exit.width != TILE_SIZE || game->exit.height != TILE_SIZE
+		|| game->c_exit.width != TILE_SIZE || game->c_exit.height != TILE_SIZE
 		|| game->player.width != TILE_SIZE || game->player.height != TILE_SIZE)
-		ft_printf("Wrong texture size");
+		return (error_message(16));
+	return (1);
 }

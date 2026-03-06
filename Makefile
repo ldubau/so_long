@@ -49,7 +49,7 @@ fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 	make -C $(FT_PRINTF_DIR) fclean
-	make -C $(LIBMLX_DIR) fclean
+	make -C $(LIBMLX_DIR) clean
 
 re: fclean all
 

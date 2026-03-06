@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 12:36:32 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/06 08:21:06 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 12:51:10 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	close_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->collect.img);
 	if (game->exit.img)
 		mlx_destroy_image(game->mlx, game->exit.img);
+	if (game->c_exit.img)
+		mlx_destroy_image(game->mlx, game->c_exit.img);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

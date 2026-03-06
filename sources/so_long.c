@@ -6,13 +6,11 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/06 08:28:26 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 12:33:13 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-#include <stdio.h> //no
 
 void	free_all(t_game *game)
 {
@@ -29,28 +27,48 @@ void	free_all(t_game *game)
 		free(game->map.line);
 }
 
+int	so_long(t_game *game, char *av)
+{
+	int		fd;
+
+	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		return (error_message(3));
+	ft_bzero(game, sizeof(t_game));
+	map_buid(fd, &game->map);
+	if (!game->map.array)
+	{
+		free_all(game);
+		return (0);
+	}
+	if (!error_check(game))
+	{
+		free_all(game);
+		return (0);
+	}
+	close(fd);
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	game;
-	int		fd;
+	int		boolean;
 
 	if (ac != 2)
 		return (error_message(1));
 	if (ft_strnstr(av[1], ".ber", ft_strlen(av[1])) == 0)
 		return (error_message(2));
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		return (error_message(3));
-	ft_bzero(&game, sizeof(t_game));
-	map_buid(fd, &game.map);
-	if (!error_check(&game))
+	boolean = so_long(&game, av[1]);
+	if (!boolean)
+		return (0);
+	init_mlx(&game);
+	boolean = load_textures(&game);
+	if (!boolean)
 	{
-		free_all(&game);
+		close_game(&game);
 		return (0);
 	}
-	close(fd);
-	init_mlx(&game);
-	load_textures(&game);
 	draw_all(&game);
 	mlx_key_hook(game.win, key_hook, &game);
 	mlx_hook(game.win, 17, 0, close_game, &game);

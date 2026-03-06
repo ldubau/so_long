@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:36:26 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/06 08:31:29 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/06 12:51:38 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_map(t_game *game, char data, int i, int j)
 			game->collect.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == 'E' && game->map.collected != game->map.total_collectibles)
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->exit.img, j * TILE_SIZE, i * TILE_SIZE);
+			game->c_exit.img, j * TILE_SIZE, i * TILE_SIZE);
 	else if (data == 'E' && game->map.collected == game->map.total_collectibles)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->exit.img, j * TILE_SIZE, i * TILE_SIZE);
