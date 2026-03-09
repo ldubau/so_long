@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c init_mlx.c hooks.c draw_map.c textures.c error.c\
+SRCS = so_long.c init_mlx.c hooks.c draw_map.c textures.c error_check.c\
 	parse.c error_message.c
 
 SRCS_DIR = sources/
