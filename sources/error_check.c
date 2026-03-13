@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/13 11:18:31 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/13 13:48:56 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
+
 int	check_object(t_map *map)
 {
 	int	i;
@@ -123,11 +123,13 @@ int	error_check(t_game *game)
 	}
 	if (i != game->map.height)
 		return (error_message(4));
-	if (!check_wall(&game->map))
+	if (game->map.height > 16 || game->map.width > 30)
 		return (error_message(5));
-	if (!check_object(&game->map))
+	if (!check_wall(&game->map))
 		return (error_message(6));
-	if (!flood_fill(&game->map))
+	if (!check_object(&game->map))
 		return (error_message(7));
+	if (!flood_fill(&game->map))
+		return (error_message(8));
 	return (1);
 }

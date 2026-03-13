@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/12 18:39:21 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/13 13:52:19 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	so_long(t_game *game, char *av)
 	if (!game->map.array)
 	{
 		free_all(game);
-		return (error_message(10));
+		return (error_message(11));
 	}
 	if (!error_check(game))
 	{
