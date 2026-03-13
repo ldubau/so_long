@@ -17,7 +17,7 @@ int	print_unsigned(unsigned int n)
 	int	count;
 
 	count = 0;
-	if (n < 0)
+	//if (n < 0)
 		n = 4294967295 + n;
 	count += ft_putnbr(n);
 	return (count);

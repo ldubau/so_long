@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:38:50 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/06 12:33:13 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/12 18:39:21 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int	so_long(t_game *game, char *av)
 		return (error_message(3));
 	ft_bzero(game, sizeof(t_game));
 	map_buid(fd, &game->map);
+	close(fd);
 	if (!game->map.array)
 	{
 		free_all(game);
-		return (0);
+		return (error_message(10));
 	}
 	if (!error_check(game))
 	{
 		free_all(game);
 		return (0);
 	}
-	close(fd);
 	return (1);
 }
 

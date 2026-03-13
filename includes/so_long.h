@@ -6,7 +6,7 @@
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:39:05 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/06 12:44:25 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/13 11:07:17 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct s_pos
 	int	y;
 }	t_pos;
 
+typedef struct s_check
+{
+	int	exit_player;
+	int	collect;
+}	t_check;
+
 typedef struct s_map
 {
 	char	*line;
@@ -39,6 +45,7 @@ typedef struct s_map
 	int		filled_collect;
 	int		filled_exit;
 	t_pos	player;
+	t_check	objects;
 }	t_map;
 
 typedef struct s_img

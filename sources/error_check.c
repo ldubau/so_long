@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 11:14:44 by leonpouet         #+#    #+#             */
-/*   Updated: 2026/03/06 08:18:51 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/13 11:18:31 by leonpouet        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+#include <stdio.h>
 int	check_object(t_map *map)
 {
 	int	i;
 	int	j;
-	int	exit_player;
-	int	collect;
 
 	i = 0;
-	exit_player = 0;
-	collect = 0;
+	map->objects.exit_player = 0;
+	map->objects.collect = 0;
 	while (map->array[i])
 	{
 		j = 0;
 		while (map->array[i][j])
 		{
 			if (map->array[i][j] == 'E' || map->array[i][j] == 'P')
-				exit_player++;
-			if (map->array[i][j] == 'C')
-				collect++;
+				map->objects.exit_player++;
+			else if (map->array[i][j] == 'C')
+				map->objects.collect++;
+			else if (!(map->array[i][j] == '1' || map->array[i][j] == '0'))
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	if (exit_player != 2 || collect < 1)
+	if (map->objects.exit_player != 2 || map->objects.collect < 1)
 		return (0);
 	return (1);
 }
