@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonpouet <leonpouet@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ldubau <ldubau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 12:36:32 by ldubau            #+#    #+#             */
-/*   Updated: 2026/03/06 12:51:10 by leonpouet        ###   ########.fr       */
+/*   Updated: 2026/03/14 14:44:31 by ldubau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	moov_player(t_game *game, int x, int y)
 	else if (game->map.array[y][x] == 'E')
 	{
 		if (game->map.collected == game->map.total_collectibles)
+		{
+			ft_printf("YOU WIN !!");
 			close_game(game);
+		}
 		else
 			return (0);
 	}
